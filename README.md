@@ -35,6 +35,8 @@ El proyecto se ejecuta mediante la instrucción, utilizándose las propiedades d
 mvn spring-boot:run -Dspring-boot.run.profiles=local
 ````
 
+El jar final se encontrara en la carpeta target del proyecto con la denominacion "calculator-1.0.0-SNAPSHOT.jar"
+
 Una vez levantado, se ejecuta en local en el puerto 8080.
 El api del servicio se puede consultar localmente en: http://localhost:8080/swagger-ui.html
 
@@ -44,5 +46,4 @@ El api del servicio se puede consultar localmente en: http://localhost:8080/swag
 Asi que al momento de la declaracion se crea una instancia del mismo y se utiliza, al no ser un bean que se aprovechara 
 de la inyeccion de dependencia se utilizo un archivo de configuracion para declararlo.
 
-- En el microservicio falto el desarrollo de las pruebas y de la operacion de subtract pero sigue los lineamientos del
-add.
+- En el microservicio falto el desarrollo de las pruebas
