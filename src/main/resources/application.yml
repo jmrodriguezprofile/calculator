@@ -1,0 +1,28 @@
+spring:
+  application:
+    domain: sanitas
+    name: calculator:1.0.0-SNAPSHOT
+    description: calculator
+    version: 1.0.0-SNAPSHOT
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
+
+api:
+  endpoints:
+    operations:
+      name: operations
+      mapping: /operations
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  health:
+    db:
+      enabled: false
+    defaults:
+      enabled: false
