@@ -1,4 +1,4 @@
-package com.sanitas.calculator.application.ports;
+package com.sanitas.calculator.application.ports.inbound;
 
 import com.sanitas.calculator.application.query.AddOperationQuery;
 import com.sanitas.calculator.domain.entity.OperationView;

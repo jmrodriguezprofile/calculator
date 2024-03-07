@@ -1,6 +1,7 @@
 package com.sanitas.calculator.infrastructure.adapters.inbound.rest.controller;
 
 import com.sanitas.calculator.domain.entity.RestErrorEntity;
+import com.sanitas.calculator.infrastructure.adapters.inbound.rest.response.OperationResponse;
 import com.sanitas.calculator.infrastructure.configuration.ApiResponseConfiguration;
 import com.sanitas.calculator.infrastructure.configuration.ResponsesConfiguration;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,7 +34,8 @@ public interface OperationRestControllerAdapter {
             responses = {
                     @ApiResponse(
                             responseCode = ApiResponseConfiguration.RESPONSE_200_CODE,
-                            description = ApiResponseConfiguration.RESPONSE_200),
+                            description = ApiResponseConfiguration.RESPONSE_200,
+                            content = @Content(schema = @Schema(implementation = OperationResponse.class))),
                     @ApiResponse(
                             responseCode = "400",
                             description = ResponsesConfiguration.RESPONSE_400,
@@ -59,7 +61,8 @@ public interface OperationRestControllerAdapter {
             responses = {
                     @ApiResponse(
                             responseCode = ApiResponseConfiguration.RESPONSE_200_CODE,
-                            description = ApiResponseConfiguration.RESPONSE_200),
+                            description = ApiResponseConfiguration.RESPONSE_200,
+                            content = @Content(schema = @Schema(implementation = OperationResponse.class))),
                     @ApiResponse(
                             responseCode = "400",
                             description = ResponsesConfiguration.RESPONSE_400,

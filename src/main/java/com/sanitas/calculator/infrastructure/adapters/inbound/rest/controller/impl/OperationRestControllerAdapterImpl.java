@@ -1,7 +1,9 @@
 package com.sanitas.calculator.infrastructure.adapters.inbound.rest.controller.impl;
 
-import com.sanitas.calculator.application.ports.AddElementsUseCaseServicePort;
+import com.sanitas.calculator.application.ports.inbound.AddElementsUseCaseServicePort;
+import com.sanitas.calculator.application.ports.inbound.SubtractElementsUseCaseServicePort;
 import com.sanitas.calculator.application.query.AddOperationQuery;
+import com.sanitas.calculator.application.query.SubtractOperationQuery;
 import com.sanitas.calculator.infrastructure.adapters.inbound.rest.controller.OperationRestControllerAdapter;
 import com.sanitas.calculator.infrastructure.adapters.inbound.rest.mapper.OperationRestInboundMapper;
 import com.sanitas.calculator.infrastructure.adapters.inbound.rest.response.OperationResponse;
@@ -22,6 +24,7 @@ public class OperationRestControllerAdapterImpl implements OperationRestControll
 
     private final OperationRestInboundMapper operationRestInboundMapper;
     private final AddElementsUseCaseServicePort addElementsUseCaseService;
+    private final SubtractElementsUseCaseServicePort subtractElementsUseCaseServicePort;
     private final TracerImpl tracer;
 
     @Override
@@ -38,10 +41,10 @@ public class OperationRestControllerAdapterImpl implements OperationRestControll
                 .secondNumber(secondNumber)
                 .build();
 
-        var price = this.operationRestInboundMapper.operationViewToViewResponse(
+        var operationResult = this.operationRestInboundMapper.operationViewToViewResponse(
                 addElementsUseCaseService.execute(query));
 
-        var responseEntity = getOperationResponse(price);
+        var responseEntity = getOperationResponse(operationResult);
 
         tracer.trace(responseEntity);
 
@@ -55,7 +58,30 @@ public class OperationRestControllerAdapterImpl implements OperationRestControll
 
     @Override
     public ResponseEntity<?> subtractNumbers(Double firstNumber, Double secondNumber) {
-        return null;
+        if(log.isInfoEnabled()){
+            log.info("[start] - OperationRestControllerAdapterImpl.subtractNumbers - fistNumber '{}' - SecondNumber {}"
+                    , firstNumber, secondNumber);
+        }
+
+
+        final SubtractOperationQuery query = SubtractOperationQuery.builder()
+                .firstNumber(firstNumber)
+                .secondNumber(secondNumber)
+                .build();
+
+        var operationResult = this.operationRestInboundMapper.operationViewToViewResponse(
+                subtractElementsUseCaseServicePort.execute(query));
+
+        var responseEntity = getOperationResponse(operationResult);
+
+        tracer.trace(responseEntity);
+
+        if(log.isInfoEnabled()){
+            log.info("[end] - OperationRestControllerAdapterImpl.subtractNumbers - fistNumber '{}' - SecondNumber {}" +
+                            " - result {}"
+                    , firstNumber, secondNumber, responseEntity);
+        }
+        return responseEntity;
     }
 
     private ResponseEntity getOperationResponse(OperationResponse responseEntity){
