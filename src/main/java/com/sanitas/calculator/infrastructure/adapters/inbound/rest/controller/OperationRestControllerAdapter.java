@@ -53,4 +53,30 @@ public interface OperationRestControllerAdapter {
             @RequestParam(value = "secondNumber")
             @NotNull(message = "sanitas.validators.secondnumber.notnull")
             @Valid Double secondNumber);
+
+    @Operation(
+            description = "The addition is performed between two input parameters",
+            responses = {
+                    @ApiResponse(
+                            responseCode = ApiResponseConfiguration.RESPONSE_200_CODE,
+                            description = ApiResponseConfiguration.RESPONSE_200),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = ResponsesConfiguration.RESPONSE_400,
+                            content = @Content(schema = @Schema(implementation = RestErrorEntity.class))),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = ResponsesConfiguration.RESPONSE_500,
+                            content = @Content(schema = @Schema(implementation = RestErrorEntity.class)))
+            })
+    @GetMapping(path = "/subtract",produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<?> subtractNumbers(
+            @Parameter(name = "firstNumber", description = "firstNumber", in = ParameterIn.QUERY)
+            @RequestParam(value = "firstNumber")
+            @NotNull(message = "sanitas.validators.firstnumber.notnull")
+            @Valid Double firstNumber,
+            @Parameter(name = "secondNumber", description = "secondNumber", in = ParameterIn.QUERY)
+            @RequestParam(value = "secondNumber")
+            @NotNull(message = "sanitas.validators.secondnumber.notnull")
+            @Valid Double secondNumber);
 }

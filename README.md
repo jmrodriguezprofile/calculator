@@ -19,7 +19,7 @@ Este servicio resume los puntos de entrada al servicio vía API Rest:
 | Operación | Método | Path                 | Descripción                                                           
 |-----------|--------|----------------------|-----------------------------------------------------------------------|
 | Sumar     | POST   | /operations/add      | Obtiene el resultado de la suma de <br/>los parametros seleccionados  |
-| Restar    | POST   | /operations/substrac | Obtiene el resultado de la resta de <br/>los parametros seleccionados |
+| Restar    | POST   | /operations/subtract | Obtiene el resultado de la resta de <br/>los parametros seleccionados |
 
 
 Este proyecto se construye mediante la herramienta Maven. Si se quieren ejecutar todas las fases, basta con ejecutar
