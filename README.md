@@ -38,3 +38,11 @@ mvn spring-boot:run -Dspring-boot.run.profiles=local
 Una vez levantado, se ejecuta en local en el puerto 8080.
 El api del servicio se puede consultar localmente en: http://localhost:8080/swagger-ui.html
 
+# Información relevante
+
+- La implementacion del TracerApi no me era reconocida, es decir, el traceImpl no Implementaba el TracerApi. 
+Asi que al momento de la declaracion se crea una instancia del mismo y se utiliza, al no ser un bean que se aprovechara 
+de la inyeccion de dependencia se utilizo un archivo de configuracion para declararlo.
+
+- En el microservicio falto el desarrollo de las pruebas y de la operacion de subtract pero sigue los lineamientos del
+add.

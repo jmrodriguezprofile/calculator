@@ -5,6 +5,7 @@ import com.sanitas.calculator.application.query.AddOperationQuery;
 import com.sanitas.calculator.infrastructure.adapters.inbound.rest.controller.OperationRestControllerAdapter;
 import com.sanitas.calculator.infrastructure.adapters.inbound.rest.mapper.OperationRestInboundMapper;
 import com.sanitas.calculator.infrastructure.adapters.inbound.rest.response.OperationResponse;
+import io.corp.calculator.TracerImpl;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ public class OperationRestControllerAdapterImpl implements OperationRestControll
 
     private final OperationRestInboundMapper operationRestInboundMapper;
     private final AddElementsUseCaseServicePort addElementsUseCaseService;
+    private final TracerImpl tracer;
 
     @Override
     public ResponseEntity<?> sumNumbers(Double firstNumber, Double secondNumber) {
@@ -40,6 +42,8 @@ public class OperationRestControllerAdapterImpl implements OperationRestControll
                 addElementsUseCaseService.execute(query));
 
         var responseEntity = getOperationResponse(price);
+
+        tracer.trace(responseEntity);
 
         if(log.isInfoEnabled()){
             log.info("[end] - OperationRestControllerAdapterImpl.sumNumbers - fistNumber '{}' - SecondNumber {}" +
