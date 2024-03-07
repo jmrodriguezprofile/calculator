@@ -1,0 +1,1 @@
+package com.sanitas.calculator.infrastructure.adapters.inbound.messaging;
